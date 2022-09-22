@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DefenderTest {
 
     @Test
-    @DisplayName("Test 8.")
+    @DisplayName("Test 1.")
     void DefenderVsRookieNotIncreasingHP() {
         var unit_1 = new Defender();
         var unit_2 = new Rookie();
@@ -23,7 +23,7 @@ class DefenderTest {
     }
 
     @Test
-    @DisplayName("Test 9.")
+    @DisplayName("Test 2.")
     void DefenderVsRookieVsWarrior() {
         var unit1 = new Defender();
         var unit2 = new Rookie();
@@ -37,7 +37,7 @@ class DefenderTest {
     }
 
     @Test
-    @DisplayName("Test 10.")
+    @DisplayName("Test 3.")
     void WarriorVsDefender() {
         var unit1 = new Warrior();
         var unit2 = new Defender();

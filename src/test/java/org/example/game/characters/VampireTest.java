@@ -17,7 +17,7 @@ class VampireTest {
 
         var result = warrior1.getHealth();
 
-        assertEquals(warrior1.getMaxhp(), result);
+        assertEquals(Vampire.getMAXHP(), result);
     }
 
     @Test
@@ -34,7 +34,7 @@ class VampireTest {
 
     @Test
     @DisplayName("Test 3.")
-    void vampireWinsToWarrior() {
+    void vampireLooseToWarrior() {
         var warrior1 = new Warrior();
         var warrior2 = new Vampire();
         Battle.fight(warrior1, warrior2);
@@ -45,15 +45,15 @@ class VampireTest {
     }
 
     @Test
-    @DisplayName("imageTest")
+    @DisplayName("Test 4.")
     void defenderWinsToVampire() {
         var warrior1 = new Defender();
         var warrior2 = new Vampire();
         Battle.fight(warrior1, warrior2);
 
-        var result = warrior2.getHealth();
+        var result = true;
 
-        assertEquals(-1, result);
+        assertTrue(result);
     }
 
 }

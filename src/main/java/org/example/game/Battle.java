@@ -17,6 +17,11 @@ public class Battle {
                 defender.hit(attacker);
             }
             count++;
+            if (!attacker.isAlive()) {
+                attacker.setAlive(false);
+            } else if (!defender.isAlive()) {
+                defender.setAlive(false);
+            }
         }
         System.out.println("\n");
         return attacker.isAlive();
