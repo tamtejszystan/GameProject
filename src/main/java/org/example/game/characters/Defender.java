@@ -1,14 +1,15 @@
 package org.example.game.characters;
 
+import org.example.game.Damage;
+import org.example.game.SimpleDamage;
+
 public class Defender extends Warrior {
-    private int health = 60;
+
     private static final int ATTACK = 3;
     private static final int DEFENSE = 2;
-    private static final int MAXHP = 60;
 
-    @Override
-    public int getHealth() {
-        return health;
+    public Defender() {
+        super(60);
     }
 
     @Override
@@ -16,18 +17,14 @@ public class Defender extends Warrior {
         return ATTACK;
     }
 
-
     protected int getDefense() {
         return DEFENSE;
     }
 
+
     @Override
-    public void hitBy(Warrior attacker) {
-        super.hitBy(attacker);
-        if (attacker.getAttack() > getDefense()) {
-            health -= (attacker.getAttack() - getDefense());
-        } else {
-            health = getHealth();
-        }
+    protected void receiveDamage(Damage damage) {
+        int reducedDamage = Math.max(0, damage.getValue() - getDefense());
+        super.receiveDamage(new SimpleDamage(reducedDamage, damage.getDamageDealer()));
     }
 }

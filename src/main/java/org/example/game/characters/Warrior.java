@@ -1,10 +1,13 @@
 package org.example.game.characters;
 
+import org.example.game.Damage;
+import org.example.game.SimpleDamage;
+
 public class Warrior implements Cloneable {
-    private int health = 50;
+    private int health;
+    private final int INITIALHEALTH;
     private static final int ATTACK = 5;
     private boolean isAlive = true;
-    private static final int MAXHP = 50;
 
     @Override
     public Warrior clone()  {
@@ -16,12 +19,21 @@ public class Warrior implements Cloneable {
         throw new IllegalStateException("Never should get here.");
     }
 
+    // Constructor created for inherited classes
+    protected Warrior(int health) {
+        INITIALHEALTH = this.health = health;
+    }
+
+    public Warrior() {
+        this(50);
+    }
+
     public int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    protected void setHealth(int health) {
+        this.health = Math.min(INITIALHEALTH, health);
     }
 
     public int getAttack() {
@@ -37,12 +49,12 @@ public class Warrior implements Cloneable {
         isAlive = alive;
     }
 
-    public void hits(Warrior defender) {
-       defender.hitBy(this);
+    public void hit(Warrior opponent) {
+       opponent.receiveDamage(new SimpleDamage(getAttack(), this));
 
     }
 
-    public void hitBy(Warrior attacker) {
-        health -= attacker.getAttack();
+    protected void receiveDamage(Damage damage) {
+        setHealth(getHealth() - damage.getValue());
     }
 }

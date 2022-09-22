@@ -44,9 +44,9 @@ class DefenderTest {
         Battle.fight(unit1, unit2);
 
 
-        var result = true;
+        var result = false;
 
-        assertTrue(result);
+        assertFalse(result);
     }
 
 
