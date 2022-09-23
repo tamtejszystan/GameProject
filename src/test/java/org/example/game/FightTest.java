@@ -7,6 +7,12 @@ import org.example.game.characters.Warrior;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperties;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -96,10 +102,21 @@ class FightTest {
     }
 
 
+    @ParameterizedTest
+    @MethodSource("checkFightResult")
+    void checkFightResult(Warrior warrior1, Warrior warrior2, boolean expected) {
+        var result = Battle.fight(warrior1, warrior2);
+        assertEquals(expected, result);
+    }
 
-
-
-
+    static Stream<Arguments> checkFightResult() {
+        return Stream.of(
+                Arguments.of(new Warrior(), new Warrior(), true),
+                Arguments.of(new Knight(), new Warrior(), true),
+                Arguments.of(new Knight(), new Knight(), true),
+                Arguments.of(new Warrior(), new Knight(), false)
+        );
+    }
 
 
 }

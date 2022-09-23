@@ -3,111 +3,40 @@ package org.example.game.characters;
 import org.example.game.Battle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArmyTest {
-
-    @Test
-    @DisplayName("Test 0.")
-    void smokeTest() {
-
-        Army myArmy = new Army();
-        myArmy.addUnits(() -> new Knight(), 3);
-
-        Army enemyArmy = new Army();
-        enemyArmy.addUnits(() -> new Warrior(), 3);
-
-        Army army3 = new Army();
-        army3.addUnits(() -> new Warrior(), 20);
-        army3.addUnits(() -> new Knight(), 5);
-
-        Army army4 = new Army();
-        army4.addUnits(() -> new Warrior(), 30);
-
-        assert Battle.battle(myArmy, enemyArmy) == true;
-        assert Battle.battle(army3, army4) == false;
+    @ParameterizedTest
+    @MethodSource()
+    void checkBattleResult(Army army1, Army army2, boolean expected) {
+        var result = Battle.battle(army1, army2);
+        assertEquals(expected, result);
     }
 
-    @Test
-    @DisplayName("Test 1.")
-    void warriorLooseToTwoWarriors() {
-        var army1 = new Army();
-        var army2 = new Army();
-        army1.addUnits(Warrior::new, 1);
-        army2.addUnits(Warrior::new, 2);
+    static Stream<Arguments> checkBattleResult() {
+        return Stream.of(
+                Arguments.of(new Army().addUnits(Warrior::new, 1), new Army().addUnits(Warrior::new,2), false),
+                Arguments.of(new Army().addUnits(Warrior::new, 2), new Army().addUnits(Warrior::new,3), false),
+                Arguments.of(new Army().addUnits(Warrior::new, 5), new Army().addUnits(Warrior::new,7), false),
+                Arguments.of(new Army().addUnits(Warrior::new, 20), new Army().addUnits(Warrior::new, 21), true),
+                Arguments.of(new Army().addUnits(Warrior::new, 10), new Army().addUnits(Warrior::new, 11), true),
+                Arguments.of(new Army().addUnits(Warrior::new, 11), new Army().addUnits(Warrior::new, 7), true),
+                Arguments.of(new Army().addUnits(Warrior::new, 5).addUnits(Defender::new, 4).addUnits(Defender::new, 5), new Army().addUnits(Warrior::new, 4), true),
+                Arguments.of(new Army().addUnits(Defender::new, 5).addUnits(Warrior::new, 20).addUnits(Defender::new, 21), new Army().addUnits(Warrior::new, 4), true),
+                Arguments.of(new Army().addUnits(Warrior::new, 10).addUnits(Defender::new, 5).addUnits(Defender::new, 10), new Army().addUnits(Warrior::new, 5), true),
+                Arguments.of(new Army().addUnits(Defender::new, 2).addUnits(Warrior::new, 1).addUnits(Defender::new, 1), new Army().addUnits(Warrior::new, 5), false),
+                Arguments.of(new Army().addUnits(Defender::new, 5).addUnits(Vampire::new, 6).addUnits(Warrior::new, 7), new Army().addUnits(Warrior::new, 6).addUnits(Defender::new, 6).addUnits(Vampire::new, 6), false),
+                Arguments.of(new Army().addUnits(Defender::new, 1).addUnits(Vampire::new, 3).addUnits(Warrior::new, 4), new Army().addUnits(Warrior::new, 4).addUnits(Defender::new, 4).addUnits(Vampire::new, 3), false),
+                Arguments.of(new Army().addUnits(Defender::new, 11).addUnits(Vampire::new, 3).addUnits(Warrior::new, 4), new Army().addUnits(Warrior::new, 4).addUnits(Defender::new, 4).addUnits(Vampire::new, 13), true),
+                Arguments.of(new Army().addUnits(Defender::new, 9).addUnits(Vampire::new, 3).addUnits(Warrior::new, 8), new Army().addUnits(Warrior::new, 4).addUnits(Defender::new, 4).addUnits(Vampire::new, 13), true)
 
-        var result = false;
-
-        assertFalse(result);
+                );
     }
-
-    @Test
-    @DisplayName("Test 2.")
-    void twoWarriorsLooseToThreeW() {
-        var army1 = new Army();
-        var army2 = new Army();
-        army1.addUnits(Warrior::new, 2);
-        army2.addUnits(Warrior::new, 3);
-
-        var result = false;
-
-        assertFalse(result);
-    }
-
-    @Test
-    @DisplayName("Test 3.")
-    void fiveWarriorsLooseToSevenW() {
-        var army1 = new Army();
-        var army2 = new Army();
-        army1.addUnits(Warrior::new, 5);
-        army2.addUnits(Warrior::new, 7);
-
-        var result = false;
-
-        assertFalse(result);
-    }
-
-    @Test
-    @DisplayName("Test 4.")
-    void twentyWarriorsWinsToTwentyOneW() {
-        var army1 = new Army();
-        var army2 = new Army();
-        army1.addUnits(Warrior::new, 20);
-        army2.addUnits(Warrior::new, 21);
-
-        var result = true;
-
-        assertTrue(result);
-    }
-
-    @Test
-    @DisplayName("Test 5.")
-    void tenWarriorsWinsToElevenW() {
-        var army1 = new Army();
-        var army2 = new Army();
-        army1.addUnits(Warrior::new, 10);
-        army2.addUnits(Warrior::new, 11);
-
-        var result = true;
-
-        assertTrue(result);
-    }
-
-    @Test
-    @DisplayName("Test 6.")
-    void elevenWarriorsWinsToSevenW() {
-        var army1 = new Army();
-        var army2 = new Army();
-        army1.addUnits(Warrior::new, 11);
-        army2.addUnits(Warrior::new, 7);
-
-        var result = true;
-
-        assertTrue(result);
-    }
-
-
 }
