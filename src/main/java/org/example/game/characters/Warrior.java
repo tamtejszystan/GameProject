@@ -5,7 +5,7 @@ import org.example.game.SimpleDamage;
 
 public class Warrior implements Cloneable {
     private int health;
-    private final int INITIALHEALTH;
+    private final int initialHealth;
     private static final int ATTACK = 5;
     private boolean isAlive = true;
 
@@ -21,7 +21,7 @@ public class Warrior implements Cloneable {
 
     // Constructor created for inherited classes
     protected Warrior(int health) {
-        INITIALHEALTH = this.health = health;
+        initialHealth = this.health = health;
     }
 
     public Warrior() {
@@ -33,7 +33,7 @@ public class Warrior implements Cloneable {
     }
 
     protected void setHealth(int health) {
-        this.health = Math.min(INITIALHEALTH, health);
+        this.health = Math.min(initialHealth, health);
     }
 
     public int getAttack() {

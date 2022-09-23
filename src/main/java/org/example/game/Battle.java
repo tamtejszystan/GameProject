@@ -1,5 +1,6 @@
 package org.example.game;
 
+import org.example.game.characters.Army;
 import org.example.game.characters.Warrior;
 
 public class Battle {
@@ -26,6 +27,16 @@ public class Battle {
         System.out.println("\n");
         return attacker.isAlive();
     }
+
+    public static boolean battle(Army army1, Army army2) {
+        var it1 = army1.firstAlive();
+        var it2 = army2.firstAlive();
+        while(it1.hasNext() && it2.hasNext()) {
+            fight(it1.next(), it2.next());
+        }
+        return it1.hasNext();
+    }
+
 }
 
 
