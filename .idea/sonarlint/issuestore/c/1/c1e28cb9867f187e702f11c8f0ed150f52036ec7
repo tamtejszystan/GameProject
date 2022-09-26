@@ -1,0 +1,9 @@
+
+l
+java:S1450
+"VRemove the "isAlive" field and declare it as a local variable in the relevant methods.(ÛË‰ß
+n
+java:S2975"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(¬¦Îûÿÿÿÿ
+A
+java:S1068
+"+Remove this unused "isAlive" private field.(ÛË‰ß
