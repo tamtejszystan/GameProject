@@ -1,7 +1,8 @@
 package org.example;
 
 import org.example.game.Battle;
-import org.example.game.characters.*;
+import org.example.game.Defender;
+import org.example.game.Warrior;
 
 public class Main {
     public static void main(String[] args) {

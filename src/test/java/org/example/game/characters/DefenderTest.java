@@ -1,10 +1,11 @@
 package org.example.game.characters;
 
 import org.example.game.Battle;
+import org.example.game.Defender;
+import org.example.game.Rookie;
+import org.example.game.Warrior;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.security.KeyStore;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,7 +1,5 @@
 package org.example.game;
 
-import org.example.game.characters.Warrior;
-
 import java.util.Objects;
 
 public class SimpleDamage implements Damage{

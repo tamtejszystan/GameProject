@@ -1,7 +1,4 @@
-package org.example.game.characters;
-
-import org.example.game.Damage;
-import org.example.game.SimpleDamage;
+package org.example.game;
 
 public class Defender extends Warrior {
 

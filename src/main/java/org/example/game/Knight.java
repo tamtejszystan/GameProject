@@ -1,4 +1,4 @@
-package org.example.game.characters;
+package org.example.game;
 
 public class Knight extends Warrior {
     private static final int ATTACK = 7;

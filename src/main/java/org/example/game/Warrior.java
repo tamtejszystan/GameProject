@@ -1,24 +1,4 @@
-package org.example.game.characters;
-
-import org.example.game.Damage;
-import org.example.game.SimpleDamage;
-
-@FunctionalInterface // SAM
-interface HasAttack {
-    int getAttack();
-}
-
-interface HasHealth {
-    int getHealth();
-
-    default boolean isAlive() {
-        return getHealth() > 0;
-    }
-}
-
-interface CanReceiveDamage extends HasHealth {
-   void receiveDamage(HasAttack damager);
-}
+package org.example.game;
 
 public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
     private int health;
@@ -53,16 +33,6 @@ public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
-
-    public void hit(CanReceiveDamage opponent) {
-        opponent.receiveDamage(this);
-        //  opponent.receiveDamage(new SimpleDamage(getAttack(), this));
-
-    }
-
- //   protected void receiveDamage(Damage damage) {
- //       setHealth(getHealth() - damage.getValue());
- //   }
 
     public void receiveDamage(HasAttack damager) {
         setHealth(getHealth() - damager.getAttack());

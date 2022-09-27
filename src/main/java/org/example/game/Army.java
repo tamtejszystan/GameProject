@@ -1,17 +1,50 @@
-package org.example.game.characters;
+package org.example.game;
 
 import java.util.*;
 import java.util.function.Supplier;
 
-public class Army {
+public class Army implements Iterable<Warrior> {
 
-    private static class Node {
+    private class Node
+    extends Warrior
+    implements WarriorInArmy
+    {
         Warrior warrior;
         Node next;
 
         public Node(Warrior warrior) {
             this.warrior = warrior;
             this.next = this;
+        }
+
+        @Override
+        public Warrior getNextBehind() {
+            return next == head ? null : next;
+        }
+
+        @Override
+        public void hit(CanReceiveDamage opponent) {
+            warrior.hit(opponent);
+        }
+
+        @Override
+        public int getHealth() {
+            return warrior.getHealth();
+        }
+
+        @Override
+        protected void setHealth(int health) {
+            warrior.setHealth(health);
+        }
+
+        @Override
+        public int getAttack() {
+            return warrior.getAttack();
+        }
+
+        @Override
+        public void receiveDamage(HasAttack damager) {
+            warrior.receiveDamage(damager);
         }
     }
 
@@ -23,7 +56,7 @@ public class Army {
     }
 
     private Warrior peek() {
-        return head.next.warrior;
+        return head.next;
     }
 
     private void removeFromHead() {
@@ -51,6 +84,12 @@ public class Army {
     }
     // reference to first alive element of collection
 
+
+    @Override
+    public Iterator<Warrior> iterator() {
+        return new SimpleIterator();
+    }
+
     public Iterator<Warrior> firstAlive() {
         return new FirstAliveIterator();
     }
@@ -69,9 +108,29 @@ public class Army {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            return peek();
+            var res = peek();
+            return res == head ? null : res;
         }
     }
+
+   private class SimpleIterator implements Iterator<Warrior> {
+        Node cursor = head;
+
+       @Override
+       public boolean hasNext() {
+           return cursor.next != head;
+       }
+
+       @Override
+       public Warrior next() {
+           if (!hasNext()) {
+               throw new NoSuchElementException();
+           }
+           cursor = cursor.next;
+           return cursor;
+       }
+   }
+
 }
 
 

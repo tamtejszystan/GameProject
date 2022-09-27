@@ -1,6 +1,6 @@
 package org.example.game.characters;
 
-import org.example.game.Battle;
+import org.example.game.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

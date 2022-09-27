@@ -1,6 +1,6 @@
-package org.example.game.characters;
+package org.example.game;
 
-public class Vampire extends Warrior {
+public class Vampire extends Warrior implements KnowsDamageDealt {
     private static final int ATTACK = 4;
     private static final int VAMPIRISM = 50;
     private static final int MAXHP = 40;
@@ -24,14 +24,12 @@ public class Vampire extends Warrior {
 
     @Override
     public void hit(CanReceiveDamage opponent) {
-        int healthBeforeHit = opponent.getHealth();
-        super.hit(opponent);
-        int healthAfterHit = opponent.getHealth();
-        int damageDealt = healthBeforeHit - healthAfterHit;
+        int damageDealt = hitAndReportDamage(opponent);
         final int percent = 100;
         int healthRestored = (damageDealt * getVampirism() / percent);
         setHealth(getHealth() + healthRestored);
         }
+
     }
 
 
