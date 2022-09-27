@@ -3,21 +3,29 @@ package org.example.game.characters;
 import org.example.game.Damage;
 import org.example.game.SimpleDamage;
 
-public class Warrior implements Cloneable {
+@FunctionalInterface // SAM
+interface HasAttack {
+    int getAttack();
+}
+
+interface HasHealth {
+    int getHealth();
+
+    default boolean isAlive() {
+        return getHealth() > 0;
+    }
+}
+
+interface CanReceiveDamage extends HasHealth {
+   void receiveDamage(HasAttack damager);
+}
+
+public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
     private int health;
     private final int initialHealth;
     private static final int ATTACK = 5;
     private boolean isAlive = true;
 
-    @Override
-    public Warrior clone()  {
-        try {
-            return (Warrior) super.clone(); // shallow copy
-        } catch (CloneNotSupportedException e) {
-            // nothing
-        }
-        throw new IllegalStateException("Never should get here.");
-    }
 
     // Constructor created for inherited classes
     protected Warrior(int health) {
@@ -28,6 +36,7 @@ public class Warrior implements Cloneable {
         this(50);
     }
 
+    @Override
     public int getHealth() {
         return health;
     }
@@ -36,25 +45,26 @@ public class Warrior implements Cloneable {
         this.health = Math.min(initialHealth, health);
     }
 
+    @Override
     public int getAttack() {
         return ATTACK;
-    }
-
-
-    public boolean isAlive() {
-        return health > 0;
     }
 
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
 
-    public void hit(Warrior opponent) {
-       opponent.receiveDamage(new SimpleDamage(getAttack(), this));
+    public void hit(CanReceiveDamage opponent) {
+        opponent.receiveDamage(this);
+        //  opponent.receiveDamage(new SimpleDamage(getAttack(), this));
 
     }
 
-    protected void receiveDamage(Damage damage) {
-        setHealth(getHealth() - damage.getValue());
+ //   protected void receiveDamage(Damage damage) {
+ //       setHealth(getHealth() - damage.getValue());
+ //   }
+
+    public void receiveDamage(HasAttack damager) {
+        setHealth(getHealth() - damager.getAttack());
     }
 }

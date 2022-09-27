@@ -23,8 +23,8 @@ public class Defender extends Warrior {
 
 
     @Override
-    protected void receiveDamage(Damage damage) {
-        int reducedDamage = Math.max(0, damage.getValue() - getDefense());
-        super.receiveDamage(new SimpleDamage(reducedDamage, damage.getDamageDealer()));
+    public void receiveDamage(HasAttack damager) {
+        int reducedDamage = Math.max(0, damager.getAttack() - getDefense());
+        super.receiveDamage(() -> reducedDamage);
     }
 }
