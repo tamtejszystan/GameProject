@@ -38,8 +38,13 @@ class ArmyTest {
                 Arguments.of(new Army().addUnits(Defender::new, 11).addUnits(Vampire::new, 3).addUnits(Warrior::new, 4),
                         new Army().addUnits(Warrior::new, 4).addUnits(Defender::new, 4).addUnits(Vampire::new, 13), true),
                 Arguments.of(new Army().addUnits(Defender::new, 9).addUnits(Vampire::new, 3).addUnits(Warrior::new, 8),
-                        new Army().addUnits(Warrior::new, 4).addUnits(Defender::new, 4).addUnits(Vampire::new, 13), true)
-
+                        new Army().addUnits(Warrior::new, 4).addUnits(Defender::new, 4).addUnits(Vampire::new, 13), true),
+                Arguments.of(new Army().addUnits(Lancer::new, 5).addUnits(Vampire::new, 3).addUnits(Warrior::new, 4).addUnits(Defender::new, 2),
+                        new Army().addUnits(Warrior::new, 4).addUnits(Defender::new, 4).addUnits(Vampire::new, 6).addUnits(Lancer::new, 5), false),
+                Arguments.of(new Army().addUnits(Lancer::new, 7).addUnits(Vampire::new, 3).addUnits(Warrior::new, 4).addUnits(Defender::new, 2),
+                        new Army().addUnits(Warrior::new, 4).addUnits(Defender::new, 4).addUnits(Vampire::new, 6).addUnits(Lancer::new, 4), true),
+                Arguments.of(new Army().addUnits(Warrior::new, 2),
+                        new Army().addUnits(Lancer::new, 1).addUnits(Warrior::new, 1), false)
                 );
     }
 }
