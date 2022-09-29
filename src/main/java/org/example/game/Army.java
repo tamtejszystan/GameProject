@@ -19,7 +19,21 @@ public class Army implements Iterable<Warrior> {
 
         @Override
         public Warrior getNextBehind() {
-            return next == head ? null : next;
+            return next == head ? null : next.warrior;
+        }
+
+        @Override
+        public Warrior next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            } else {
+                return next.warrior;
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return next != head;
         }
 
         @Override
@@ -55,20 +69,6 @@ public class Army implements Iterable<Warrior> {
         return tail == head;
     }
 
-    private Warrior peek() {
-        return head.next;
-    }
-
-    private void removeFromHead() {
-        if (isEmpty()) {
-            throw new NoSuchElementException();
-        }
-        if (tail == head.next) {
-            tail = head;
-        }
-        head.next = head.next.next;
-    }
-
     private void addToTail(Warrior warrior) {
         var node = new Node(warrior);
         node.next = head;
@@ -78,12 +78,23 @@ public class Army implements Iterable<Warrior> {
 
     public Army addUnits(Supplier<Warrior> factory, int quantity) {
         for (int i = 0; i < quantity; i++) {
-            addToTail(factory.get());
+            final Warrior warrior = factory.get();
+            addToTail(warrior);
         }
         return this;
     }
     // reference to first alive element of collection
 
+    public boolean removeDeadUnits() {
+        while(iterator().hasNext()){
+            if(!iterator().next().isAlive()){
+                iterator().remove();
+                return true;
+            }
+
+        }
+        return false;
+    }
 
     @Override
     public Iterator<Warrior> iterator() {
@@ -95,6 +106,21 @@ public class Army implements Iterable<Warrior> {
     }
 
     private class FirstAliveIterator implements Iterator<Warrior> {
+
+        private Warrior peek() {
+            return head.next;
+        }
+
+        private void removeFromHead() {
+            if (isEmpty()) {
+                throw new NoSuchElementException();
+            }
+            if (tail == head.next) {
+                tail = head;
+            }
+            head.next = head.next.next;
+        }
+
         @Override
         public boolean hasNext() {
             while (!isEmpty() && !peek().isAlive()) {
@@ -126,11 +152,9 @@ public class Army implements Iterable<Warrior> {
            if (!hasNext()) {
                throw new NoSuchElementException();
            }
-           cursor = cursor.next;
-           return cursor;
+           return cursor.next;
        }
    }
-
 }
 
 
