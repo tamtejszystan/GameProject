@@ -1,6 +1,6 @@
 package org.example.game;
 
-public class Healer extends Warrior{
+public class Healer extends Warrior implements CanProcessCommand{
     private static final int ATTACK = 0;
     private static final int HEALING_POWER = 2;
 
@@ -19,6 +19,13 @@ public class Healer extends Warrior{
 
      public void healAlly(Warrior ally) {
         ally.setHealth(ally.getHealth() + getHealingPower());
+     }
+
+     @Override
+    public void processCommand(Command command, WarriorInArmy sender) {
+        if (command instanceof HealCommand) {
+            healAlly(sender.getWrapped());
+        }
      }
 
 

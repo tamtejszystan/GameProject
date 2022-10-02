@@ -21,7 +21,5 @@ S
 0src/main/java/org/example/game/SimpleDamage.java,6\3\63baaf40cdc286e3f6f0573d81510f60c134a7b9
 [
 +src/main/java/org/example/game/Vampire.java,6\5\65ec9605cafac060d68894c506558af34105fe6a
-d
-4src/main/java/org/example/game/KnowsDamageDealt.java,e\8\e8b54014ee6811c62a4575553243abc7f7b7dd47
 ]
 -src/main/java/org/example/game/HasHealth.java,a\9\a9a360d0a80141458a94b7ea53c60734b42bcf50

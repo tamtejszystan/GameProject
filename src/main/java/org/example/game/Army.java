@@ -5,10 +5,18 @@ import java.util.function.Supplier;
 
 public class Army implements Iterable<Warrior> {
 
+    public void removeDead() {
+        var it = iterator();
+        while (it.hasNext()) {
+            if (!it.next().isAlive()) {
+                it.remove();
+            }
+        }
+    }
+
     private class Node
-    extends Warrior
-    implements WarriorInArmy
-    {
+            extends Warrior
+            implements WarriorInArmy {
         Warrior warrior;
         Node next;
 
@@ -24,7 +32,7 @@ public class Army implements Iterable<Warrior> {
 
         @Override
         public Warrior next() {
-            if(!hasNext()) {
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             } else {
                 return next.warrior;
@@ -37,8 +45,14 @@ public class Army implements Iterable<Warrior> {
         }
 
         @Override
+        public Warrior getWrapped() {
+            return warrior;
+        }
+
+        @Override
         public void hit(CanReceiveDamage opponent) {
             warrior.hit(opponent);
+            processCommand(new HealCommand(), this); //recursion here
         }
 
         public void healAlly(Warrior ally) {
@@ -72,11 +86,15 @@ public class Army implements Iterable<Warrior> {
         }
     }
 
-        private final Node head = new Node(null);
-        private Node tail = head;
+    private final Node head = new Node(null);
+    private Node tail = head;
 
     boolean isEmpty() {
         return tail == head;
+    }
+
+    private Warrior peek() {
+        return head.next;
     }
 
     private void addToTail(Warrior warrior) {
@@ -96,8 +114,9 @@ public class Army implements Iterable<Warrior> {
     // reference to first alive element of collection
 
     public boolean removeDeadUnits() {
-        while(iterator().hasNext()){
-            if(!iterator().next().isAlive()){
+        Iterator<Warrior> iterator = iterator();
+        while (iterator().hasNext()) {
+            if (!iterator().next().isAlive()) {
                 iterator().remove();
                 return true;
             }
@@ -117,7 +136,7 @@ public class Army implements Iterable<Warrior> {
 
     private class FirstAliveIterator implements Iterator<Warrior> {
 
-        private Warrior peek() {
+        Warrior peek() {
             return head.next;
         }
 
@@ -149,22 +168,35 @@ public class Army implements Iterable<Warrior> {
         }
     }
 
-   private class SimpleIterator implements Iterator<Warrior> {
+    private class SimpleIterator implements Iterator<Warrior> {
         Node cursor = head;
+        Node prev = null;
 
-       @Override
-       public boolean hasNext() {
-           return cursor.next != head;
-       }
+        @Override
+        public boolean hasNext() {
+            return cursor.next != head;
+        }
 
-       @Override
-       public Warrior next() {
-           if (!hasNext()) {
-               throw new NoSuchElementException();
-           }
-           return cursor.next;
-       }
-   }
+        @Override
+        public Warrior next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            prev = cursor;
+            cursor = cursor.next;
+            return cursor.warrior;
+        }
+
+        @Override
+        public void remove() {
+            if (prev == null) {
+                throw new IllegalStateException();
+            }
+            prev.next = cursor.next;
+            cursor = prev;
+            prev = null;
+        }
+    }
 }
 
 

@@ -37,4 +37,8 @@ public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
     public void receiveDamage(HasAttack damager) {
         setHealth(getHealth() - damager.getAttack());
     }
+
+
+    public void processCommand(Command command, WarriorInArmy warriorInArmy) {
+    }
 }
