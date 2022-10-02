@@ -54,26 +54,6 @@ public class Army implements Iterable<Warrior> {
                 warrior.hit(opponent);
 
             }
-
-         // recursion   processCommand(new HealCommand(), this);
-
-
-        public void healAlly(Warrior ally) {
-
-            if (warrior instanceof Healer healer) {
-                healer.healAlly(ally);
-                if (next != head) {
-                    next.healAlly(warrior);
-                }
-            }
-        }
-
-        public void penetrate(Warrior opponent) {
-            if (warrior instanceof Lancer lancer) {
-                lancer.hit(opponent);
-            }
-        }
-
         @Override
         public int getHealth() {
             return warrior.getHealth();
@@ -102,10 +82,6 @@ public class Army implements Iterable<Warrior> {
         return tail == head;
     }
 
-    private Warrior peek() {
-        return head.next;
-    }
-
     private void addToTail(Warrior warrior) {
         var node = new Node(warrior);
         node.next = head;
@@ -121,18 +97,6 @@ public class Army implements Iterable<Warrior> {
         return this;
     }
     // reference to first alive element of collection
-
-    public boolean removeDeadUnits() {
-        Iterator<Warrior> iterator = iterator();
-        while (iterator().hasNext()) {
-            if (!iterator().next().isAlive()) {
-                iterator().remove();
-                return true;
-            }
-
-        }
-        return false;
-    }
 
     @Override
     public Iterator<Warrior> iterator() {
