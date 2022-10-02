@@ -33,12 +33,22 @@ public class Army implements Iterable<Warrior> {
 
         @Override
         public boolean hasNext() {
-            return next != head;
+            return iterator().hasNext();
         }
 
         @Override
         public void hit(CanReceiveDamage opponent) {
             warrior.hit(opponent);
+        }
+
+        public void healAlly(Warrior ally) {
+
+            if (warrior instanceof Healer healer) {
+                healer.healAlly(ally);
+                if (next != head) {
+                    next.healAlly(warrior);
+                }
+            }
         }
 
         @Override

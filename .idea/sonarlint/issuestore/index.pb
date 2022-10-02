@@ -15,13 +15,13 @@ j
 -src/test/java/org/example/game/FightTest.java,b\3\b37d581c01898e536f4bd13ea2ad7d426112f5bd
 S
 #src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
-Z
-*src/main/java/org/example/game/Battle.java,b\a\baa8c9582ccce7840b69658e61568701e45272b3
 \
 ,src/main/java/org/example/game/Defender.java,7\7\771cdb002c395e03f4cf80c1d45be9c6491beb73
 `
 0src/main/java/org/example/game/SimpleDamage.java,6\3\63baaf40cdc286e3f6f0573d81510f60c134a7b9
-Z
-*src/main/java/org/example/game/Damage.java,3\f\3ff2ffad4182c5901bf244bebca93b64fa0e47b7
 [
 +src/main/java/org/example/game/Vampire.java,6\5\65ec9605cafac060d68894c506558af34105fe6a
+d
+4src/main/java/org/example/game/KnowsDamageDealt.java,e\8\e8b54014ee6811c62a4575553243abc7f7b7dd47
+]
+-src/main/java/org/example/game/HasHealth.java,a\9\a9a360d0a80141458a94b7ea53c60734b42bcf50
