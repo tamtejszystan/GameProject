@@ -23,3 +23,9 @@ S
 +src/main/java/org/example/game/Vampire.java,6\5\65ec9605cafac060d68894c506558af34105fe6a
 ]
 -src/main/java/org/example/game/HasHealth.java,a\9\a9a360d0a80141458a94b7ea53c60734b42bcf50
+d
+4src/main/java/org/example/game/CanReceiveDamage.java,6\5\65cd22d5254fa83dca5263aec0549bde52c67767
+Z
+*src/main/java/org/example/game/Damage.java,3\f\3ff2ffad4182c5901bf244bebca93b64fa0e47b7
+d
+4src/main/java/org/example/game/KnowsDamageDealt.java,e\8\e8b54014ee6811c62a4575553243abc7f7b7dd47

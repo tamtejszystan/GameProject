@@ -51,9 +51,12 @@ public class Army implements Iterable<Warrior> {
 
         @Override
         public void hit(CanReceiveDamage opponent) {
-            warrior.hit(opponent);
-            processCommand(new HealCommand(), this); //recursion here
-        }
+                warrior.hit(opponent);
+
+            }
+
+         // recursion   processCommand(new HealCommand(), this);
+
 
         public void healAlly(Warrior ally) {
 
@@ -62,6 +65,12 @@ public class Army implements Iterable<Warrior> {
                 if (next != head) {
                     next.healAlly(warrior);
                 }
+            }
+        }
+
+        public void penetrate(Warrior opponent) {
+            if (warrior instanceof Lancer lancer) {
+                lancer.hit(opponent);
             }
         }
 
