@@ -34,9 +34,8 @@ public class Army implements Iterable<Warrior> {
         public Warrior next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
-            } else {
-                return next.warrior;
             }
+                return next.warrior;
         }
 
         @Override
