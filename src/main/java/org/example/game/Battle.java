@@ -6,23 +6,27 @@ public class Battle {
         int count = 1;
         while (attacker.isAlive() && defender.isAlive()) {
 
-            System.out.println("Round " + count);
-            System.out.println("Warrior 1 health: " + attacker.getHealth());
-            System.out.println("Warrior 2 health: " + defender.getHealth());
-          attacker.hit(defender);
+            if (count < 100) {
+                System.out.println("Round " + count);
+                System.out.println("Warrior 1 health: " + attacker.getHealth());
+                System.out.println("Warrior 2 health: " + defender.getHealth());
+                attacker.hit(defender);
 
 
-
-          if(defender.isAlive()) {
-              defender.hit(attacker);
-          }
-          count++;
+                if(defender.isAlive()) {
+                    defender.hit(attacker);
+                }
+                count++;
+            } else {
+                System.out.println("BOTH UNITS DAMAGE = 0");
+                return true;
+            }
         }
         System.out.println("\n");
         return attacker.isAlive();
     }
 
-    public static boolean battle(Army army1, Army army2) {
+    public static boolean battle(Army army1, Army army2)  {
         var it1 = army1.firstAlive();
         var it2 = army2.firstAlive();
 
@@ -32,7 +36,7 @@ public class Battle {
         return it1.hasNext();
     }
 
-    public static boolean straightFight(Army army1, Army army2) {
+    public static boolean straightFight(Army army1, Army army2)  {
         while (true) {
             var it1 = army1.iterator();
             var it2 = army2.iterator();

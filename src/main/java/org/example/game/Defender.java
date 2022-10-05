@@ -5,7 +5,7 @@ public class Defender extends Warrior {
     private   int defense = 2;
 
     public Defender() {
-        super(60, 3);
+        super(60, 3, false);
     }
 
     public int getDefense() {

@@ -5,16 +5,17 @@ public class Warrior implements HasHealth, HasAttack, CanReceiveDamage, CanUseEq
     private int initialHealth;
     private int attack;
     private boolean isAlive = true;
-
+    private final boolean isCav;
 
     // Constructor created for inherited classes
-    protected Warrior(int health, int attack) {
+    protected Warrior(int health, int attack, boolean isCav) {
         initialHealth = this.health = health;
         this.attack = attack;
+        this.isCav = isCav;
     }
 
     public Warrior() {
-        this(50, 5);
+        this(50, 5, false);
     }
 
     @Override
@@ -37,6 +38,11 @@ public class Warrior implements HasHealth, HasAttack, CanReceiveDamage, CanUseEq
 
     public void setAttack(int attack) {
         this.attack = attack;
+    }
+
+    @Override
+    public boolean isCav() {
+        return isCav;
     }
 
     public void receiveDamage(HasAttack damager) {

@@ -1,11 +1,11 @@
 package org.example.game;
 
-public class Lancer extends Warrior implements KnowsDamageDealt {
+public class Lancer extends Warrior implements KnowsDamageDealt, CanReceiveDamage, CanUseEquipment, LancerInArmy {
     private static final int PENETRATION = 50;
     private static final int PERCENT = 100;
 
     public Lancer() {
-        super(50, 6);
+        super(50, 6, true);
     }
 
     public int getPenetration() {
@@ -15,7 +15,6 @@ public class Lancer extends Warrior implements KnowsDamageDealt {
     public int getPercent() {
         return PERCENT;
     }
-
 
     /*
     Lancer hits first opponent, and the second one after him
@@ -29,7 +28,6 @@ public class Lancer extends Warrior implements KnowsDamageDealt {
             if(theSecondOpponent != null) {
                 int damageToTheSecondOpponent = (damageDealt * getPenetration()) / getPercent();
                 theSecondOpponent.receiveDamage(() -> damageToTheSecondOpponent);
-
             }
         }
     }

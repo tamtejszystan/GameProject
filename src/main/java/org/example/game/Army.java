@@ -77,6 +77,11 @@ public class Army implements Iterable<Warrior> {
         }
 
         @Override
+        public boolean isCav() {
+            return warrior.isCav();
+        }
+
+        @Override
         public void receiveDamage(HasAttack damager) {
             warrior.receiveDamage(damager);
         }

@@ -5,7 +5,7 @@ public class Healer extends Warrior {
     private int healingPower = 2;
 
     public Healer() {
-        super(60, 0);
+        super(60, 0, false);
     }
 
     public int getHealingPower() {

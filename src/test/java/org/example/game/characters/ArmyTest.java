@@ -47,7 +47,10 @@ class ArmyTest {
                         new Army().addUnits(Lancer::new, 1).addUnits(Warrior::new, 1), false),
                 Arguments.of(new Army().addUnits(Lancer::new, 1),
                         new Army().addUnits(Warrior::new, 1).addUnits(Knight::new, 1), false),
-                Arguments.of(new Army().addUnits(Lancer::new, 1), new Army().addUnits(Rookie::new, 3), true)
-                );
+                Arguments.of(new Army().addUnits(Lancer::new, 1), new Army().addUnits(Pikeman::new, 2).addUnits(Healer::new, 1), false),
+                Arguments.of(new Army().addUnits(Pikeman::new, 1), new Army().addUnits(Rookie::new, 1), true),
+                Arguments.of(new Army().addUnits(Pikeman::new, 2),
+                        new Army().addUnits(Healer::new, 1).addUnits(Lancer::new, 1), true)
+        );
     }
 }
