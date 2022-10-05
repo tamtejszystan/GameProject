@@ -52,6 +52,9 @@ class HealerTest {
                         new Army().addUnits(Warrior::new, 1)
                                 .addUnits(Healer::new, 1),
                         false
+                ), Arguments.of(new Army().addUnits(Healer::new, 1),
+                        new Army().addUnits(Healer::new, 1),
+                        true
                 )
         );
     }
