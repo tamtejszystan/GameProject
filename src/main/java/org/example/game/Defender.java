@@ -2,14 +2,18 @@ package org.example.game;
 
 public class Defender extends Warrior {
 
-    private static final int DEFENSE = 2;
+    private   int defense = 2;
 
     public Defender() {
         super(60, 3);
     }
 
     public int getDefense() {
-        return DEFENSE;
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 
 
@@ -17,5 +21,11 @@ public class Defender extends Warrior {
     public void receiveDamage(HasAttack damager) {
         int reducedDamage = Math.max(0, damager.getAttack() - getDefense());
         super.receiveDamage(() -> reducedDamage);
+    }
+
+    @Override
+    public void useEquipment(Equipment eqType) {
+        super.useEquipment(eqType);
+       setDefense(getDefense() + eqType.getDefense());
     }
 }

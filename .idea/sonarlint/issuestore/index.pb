@@ -29,9 +29,3 @@ Z
 *src/main/java/org/example/game/Powers.java,5\3\538d967147a5bf35f21fa59391be3d0f1f2d1b62
 Z
 *src/main/java/org/example/game/Rookie.java,3\6\36fce6a5c4ac807a86acae0637692cba738b3fef
-Z
-*src/main/java/org/example/game/Knight.java,1\e\1e8cb6483b4c202eedbeb8e0f398b755eddbc4da
-\
-,src/main/java/org/example/game/Defender.java,7\7\771cdb002c395e03f4cf80c1d45be9c6491beb73
-[
-+src/main/java/org/example/game/Vampire.java,6\5\65ec9605cafac060d68894c506558af34105fe6a

@@ -2,14 +2,18 @@ package org.example.game;
 
 public class Vampire extends Warrior implements KnowsDamageDealt {
 
-    private static final int VAMPIRISM = 50;
+    private int vampirism = 50;
 
     public Vampire() {
         super(40, 4);
     }
 
     public int getVampirism() {
-        return VAMPIRISM;
+        return vampirism;
+    }
+
+    public void setVampirism(int vampirism) {
+        this.vampirism = vampirism;
     }
 
     @Override
@@ -18,9 +22,14 @@ public class Vampire extends Warrior implements KnowsDamageDealt {
         final int percent = 100;
         int healthRestored = (damageDealt * getVampirism() / percent);
         setHealth(getHealth() + healthRestored);
-        }
-
     }
+
+    @Override
+    public void useEquipment(Equipment eqType) {
+        super.useEquipment(eqType);
+        setVampirism(getVampirism() + eqType.getVampirism());
+    }
+}
 
 
 

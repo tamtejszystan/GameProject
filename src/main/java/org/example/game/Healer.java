@@ -2,7 +2,7 @@ package org.example.game;
 
 public class Healer extends Warrior {
 
-    private   int healingPower = 2;
+    private int healingPower = 2;
 
     public Healer() {
         super(60, 0);
@@ -22,7 +22,7 @@ public class Healer extends Warrior {
 
     @Override
     public void useEquipment(Equipment eqType) {
-        setHealth(getHealth() + eqType.getHealth());
+        super.useEquipment(eqType);
         setHealingPower(getHealingPower() + eqType.getHealingPower());
     }
 

@@ -25,7 +25,7 @@ import static org.example.game.EquipmentTypes.*;
         var katana =  katana();
         var wand =  magicWand();
         // consider using a builder instead
-        var superWeapon = superWeapon();
+        Equipment superWeapon = superWeapon();
 
         ogre.useEquipment(sword);
         ogre.useEquipment(shield);
