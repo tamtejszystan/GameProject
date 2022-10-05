@@ -8,7 +8,7 @@ public class Defender extends Warrior {
         super(60, 3);
     }
 
-    protected int getDefense() {
+    public int getDefense() {
         return DEFENSE;
     }
 

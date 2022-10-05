@@ -110,6 +110,16 @@ public class Army implements Iterable<Warrior> {
         }
     }
 
+    public void equipWarriorAtPosition(int position, Equipment equipmentType) {
+        Iterator<Warrior> it = iterator();
+        Warrior next = it.next();
+        for (int i = 0; i < position - 1; i++) {
+            next = it.next();
+        }
+
+        next.useEquipment(equipmentType);
+    }
+
     @Override
     public Iterator<Warrior> iterator() {
         return new SimpleIterator();

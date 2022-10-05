@@ -8,7 +8,7 @@ public class Vampire extends Warrior implements KnowsDamageDealt {
         super(40, 4);
     }
 
-    protected int getVampirism() {
+    public int getVampirism() {
         return VAMPIRISM;
     }
 
