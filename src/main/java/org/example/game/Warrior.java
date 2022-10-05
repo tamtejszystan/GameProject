@@ -1,9 +1,9 @@
 package org.example.game;
 
-public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
+public class Warrior implements HasHealth, HasAttack, CanReceiveDamage, CanUseEquipment {
     private int health;
     private int initialHealth;
-    private  int attack;
+    private int attack;
     private boolean isAlive = true;
 
 
@@ -26,16 +26,27 @@ public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
         this.health = Math.min(initialHealth, health);
     }
 
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
     @Override
     public int getAttack() {
         return attack;
     }
 
-    public void setAlive(boolean alive) {
-        isAlive = alive;
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public void receiveDamage(HasAttack damager) {
         setHealth(getHealth() - damager.getAttack());
+    }
+
+    @Override
+    public void useEquipment(Equipment eqType) {
+        initialHealth = initialHealth + eqType.getHealth();
+        setHealth(initialHealth);
+        setAttack(getAttack() + eqType.getAttack());
     }
 }

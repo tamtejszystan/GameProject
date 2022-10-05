@@ -1,8 +1,6 @@
 
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 S
 #src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
 Z
@@ -23,3 +21,23 @@ k
 ;src/test/java/org/example/game/characters/DefenderTest.java,6\1\6164ae701674012a25a428c794d6ce0f1b7c0bfd
 ]
 -src/test/java/org/example/game/FightTest.java,b\3\b37d581c01898e536f4bd13ea2ad7d426112f5bd
+Z
+*src/main/java/org/example/game/Battle.java,b\a\baa8c9582ccce7840b69658e61568701e45272b3
+j
+:src/test/java/org/example/game/characters/VampireTest.java,9\9\9966eb47b2bf6d6b55f13995698b9231e1ca573f
+d
+4src/main/java/org/example/game/KnowsDamageDealt.java,e\8\e8b54014ee6811c62a4575553243abc7f7b7dd47
+i
+9src/test/java/org/example/game/characters/HealerTest.java,3\f\3f2c7092bc83958d3151f745d5d9512616b8c34a
+X
+(src/main/java/org/example/game/Army.java,b\2\b2dba834cd9d4870ef474d0d03065fbd9263e962
+Z
+*src/main/java/org/example/game/Powers.java,5\3\538d967147a5bf35f21fa59391be3d0f1f2d1b62
+Z
+*src/main/java/org/example/game/Rookie.java,3\6\36fce6a5c4ac807a86acae0637692cba738b3fef
+Z
+*src/main/java/org/example/game/Knight.java,1\e\1e8cb6483b4c202eedbeb8e0f398b755eddbc4da
+\
+,src/main/java/org/example/game/Defender.java,7\7\771cdb002c395e03f4cf80c1d45be9c6491beb73
+[
++src/main/java/org/example/game/Vampire.java,6\5\65ec9605cafac060d68894c506558af34105fe6a
