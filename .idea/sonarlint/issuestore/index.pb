@@ -5,8 +5,6 @@ S
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 S
 #src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
-d
-4src/main/java/org/example/game/KnowsDamageDealt.java,e\8\e8b54014ee6811c62a4575553243abc7f7b7dd47
 Z
 *src/main/java/org/example/game/Damage.java,3\f\3ff2ffad4182c5901bf244bebca93b64fa0e47b7
 `
@@ -17,13 +15,11 @@ d
 4src/main/java/org/example/game/CanReceiveDamage.java,6\5\65cd22d5254fa83dca5263aec0549bde52c67767
 a
 1src/main/java/org/example/game/WarriorInArmy.java,4\4\441c228dfe4f5c984bdd9e62eecfbf2efc6614c3
-[
-+src/main/java/org/example/game/Vampire.java,6\5\65ec9605cafac060d68894c506558af34105fe6a
-Z
-*src/main/java/org/example/game/Knight.java,1\e\1e8cb6483b4c202eedbeb8e0f398b755eddbc4da
-\
-,src/main/java/org/example/game/Defender.java,7\7\771cdb002c395e03f4cf80c1d45be9c6491beb73
 ]
 -src/main/java/org/example/game/HasHealth.java,a\9\a9a360d0a80141458a94b7ea53c60734b42bcf50
 p
 @src/test/java/org/example/game/characters/StraightFightTest.java,7\0\70a30de3896dd9bbadc31a2fd3c425f9991b84c8
+k
+;src/test/java/org/example/game/characters/DefenderTest.java,6\1\6164ae701674012a25a428c794d6ce0f1b7c0bfd
+]
+-src/test/java/org/example/game/FightTest.java,b\3\b37d581c01898e536f4bd13ea2ad7d426112f5bd

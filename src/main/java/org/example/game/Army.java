@@ -5,14 +5,20 @@ import java.util.function.Supplier;
 
 public class Army implements Iterable<Warrior> {
 
-    public void removeDead() {
-        var it = iterator();
-        while (it.hasNext()) {
-            if (!it.next().isAlive()) {
-                it.remove();
-            }
-        }
+    private final Node head = new Node(null);
+    private Node tail = head;
+
+    boolean isEmpty() {
+        return tail == head;
     }
+
+    private void addToTail(Warrior warrior) {
+        var node = new Node(warrior);
+        node.next = head;
+        tail.next = node;
+        tail = node;
+    }
+
 
     private class Node
             extends Warrior
@@ -42,7 +48,11 @@ public class Army implements Iterable<Warrior> {
 
         @Override
         public boolean hasNext() {
-            return iterator().hasNext();
+            while (iterator.hasNext()) {
+                return true;
+            }
+
+            return false;
         }
 
         @Override
@@ -82,19 +92,6 @@ public class Army implements Iterable<Warrior> {
         }
     }
 
-    private final Node head = new Node(null);
-    private Node tail = head;
-
-    boolean isEmpty() {
-        return tail == head;
-    }
-
-    private void addToTail(Warrior warrior) {
-        var node = new Node(warrior);
-        node.next = head;
-        tail.next = node;
-        tail = node;
-    }
 
     public Army addUnits(Supplier<Warrior> factory, int quantity) {
         for (int i = 0; i < quantity; i++) {
@@ -104,6 +101,14 @@ public class Army implements Iterable<Warrior> {
         return this;
     }
 
+    public void removeDead() {
+        var it = iterator();
+        while (it.hasNext()) {
+            if (!it.next().isAlive()) {
+                it.remove();
+            }
+        }
+    }
 
     @Override
     public Iterator<Warrior> iterator() {
