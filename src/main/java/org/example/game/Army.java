@@ -16,9 +16,11 @@ public class Army implements Iterable<Warrior> {
 
     private class Node
             extends Warrior
-            implements WarriorInArmy {
+            implements WarriorInArmy,
+            Powers {
         Warrior warrior;
         Node next;
+        Iterator<Warrior> iterator = iterator();
 
         public Node(Warrior warrior) {
             this.warrior = warrior;
@@ -35,7 +37,7 @@ public class Army implements Iterable<Warrior> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-                return next.warrior;
+            return iterator.next();
         }
 
         @Override
@@ -44,22 +46,18 @@ public class Army implements Iterable<Warrior> {
         }
 
         @Override
-        public Warrior getWrapped() {
-            return warrior;
+        public void hit(CanReceiveDamage opponent) {
+            warrior.hit(opponent);
+            next.healUnit(warrior);
         }
 
-        @Override
-        public void hit(CanReceiveDamage opponent) {
-                warrior.hit(opponent);
-
-            }
         @Override
         public int getHealth() {
             return warrior.getHealth();
         }
 
         @Override
-        protected void setHealth(int health) {
+        public void setHealth(int health) {
             warrior.setHealth(health);
         }
 
@@ -71,6 +69,16 @@ public class Army implements Iterable<Warrior> {
         @Override
         public void receiveDamage(HasAttack damager) {
             warrior.receiveDamage(damager);
+        }
+
+        @Override
+        public void healUnit(Warrior ally) {
+            if (warrior instanceof Healer healer) {
+                healer.healAlly(ally);
+                if (next != head) {
+                    next.healUnit(warrior);
+                }
+            }
         }
     }
 
@@ -95,7 +103,7 @@ public class Army implements Iterable<Warrior> {
         }
         return this;
     }
-    // reference to first alive element of collection
+
 
     @Override
     public Iterator<Warrior> iterator() {

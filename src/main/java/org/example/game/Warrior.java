@@ -2,18 +2,19 @@ package org.example.game;
 
 public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
     private int health;
-    private final int initialHealth;
-    private static final int ATTACK = 5;
+    private int initialHealth;
+    private  int attack;
     private boolean isAlive = true;
 
 
     // Constructor created for inherited classes
-    protected Warrior(int health) {
+    protected Warrior(int health, int attack) {
         initialHealth = this.health = health;
+        this.attack = attack;
     }
 
     public Warrior() {
-        this(50);
+        this(50, 5);
     }
 
     @Override
@@ -21,13 +22,13 @@ public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
         return health;
     }
 
-    protected void setHealth(int health) {
+    public void setHealth(int health) {
         this.health = Math.min(initialHealth, health);
     }
 
     @Override
     public int getAttack() {
-        return ATTACK;
+        return attack;
     }
 
     public void setAlive(boolean alive) {
@@ -36,9 +37,5 @@ public class Warrior implements HasHealth, HasAttack, CanReceiveDamage {
 
     public void receiveDamage(HasAttack damager) {
         setHealth(getHealth() - damager.getAttack());
-    }
-
-
-    public void processCommand(Command command, WarriorInArmy warriorInArmy) {
     }
 }

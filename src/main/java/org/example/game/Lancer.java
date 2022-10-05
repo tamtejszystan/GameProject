@@ -1,13 +1,11 @@
 package org.example.game;
 
-public class Lancer extends Warrior implements KnowsDamageDealt, CanProcessCommand {
+public class Lancer extends Warrior implements KnowsDamageDealt {
     private static final int PENETRATION = 50;
-    private static final int ATTACK = 6;
     static final int PERCENT = 100;
 
-    @Override
-    public int getAttack() {
-        return ATTACK;
+    public Lancer() {
+        super(50, 6);
     }
 
     public int getPenetration() {
@@ -32,11 +30,5 @@ public class Lancer extends Warrior implements KnowsDamageDealt, CanProcessComma
         }
     }
 
-    @Override
-    public void processCommand(Command command, WarriorInArmy sender) {
-        if (command instanceof PenetrationCommand) {
-            hit(sender.getWrapped());
-        }
-    }
 
 }

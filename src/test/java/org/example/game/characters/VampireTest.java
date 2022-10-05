@@ -17,7 +17,7 @@ class VampireTest {
 
         var result = warrior1.getHealth();
 
-        assertEquals(Vampire.getMAXHP(), result);
+        assertEquals(40, result);
     }
 
     @Test

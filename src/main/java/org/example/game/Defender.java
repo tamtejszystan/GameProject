@@ -2,16 +2,10 @@ package org.example.game;
 
 public class Defender extends Warrior {
 
-    private static final int ATTACK = 3;
     private static final int DEFENSE = 2;
 
     public Defender() {
-        super(60);
-    }
-
-    @Override
-    public int getAttack() {
-        return ATTACK;
+        super(60, 2);
     }
 
     protected int getDefense() {
